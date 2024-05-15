@@ -21,6 +21,7 @@ class UserController
      *
      * @queryParam page Номер страницы. Example: 2
      * @responseFile status=200 scenario="success" storage/responses/users/index.200.json
+     * @authenticated
      */
     public function index(Request $request)
     {

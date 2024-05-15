@@ -34,7 +34,7 @@ class AuthController
         ]);
 
         if (Auth::attempt($credentials)) {
-            Auth::user()->createToken('acessToken', ['*'], now()->addWeek());
+            Auth::user()->createToken('accessToken', ['*'], now()->addWeek());
 
             return response(['message' => 'Authorization is successful']);
         } else {

@@ -10,6 +10,9 @@ Route::prefix('v1')->group(function () {
     Route::post('/register', [AuthController::class, 'store'])->name('auth.store');
     Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
 
-    //Пользователи
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::middleware('auth:sanctum')->group(function () {
+        //Пользователи
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    });
+
 });
