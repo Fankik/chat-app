@@ -1,0 +1,8 @@
+{
+    "message": "validation.email",
+    "errors": {
+        "email": [
+            "validation.email"
+        ]
+    }
+}

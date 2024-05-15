@@ -1,0 +1,153 @@
+name: Endpoints
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/register
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: Регистрация
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      first_name:
+        name: first_name
+        description: 'Имя. validation.max.'
+        required: true
+        example: Иван
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      last_name:
+        name: last_name
+        description: 'Фамилия. validation.max.'
+        required: true
+        example: Иванов
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Email. validation.email validation.max.'
+        required: true
+        example: ivan.ivanov@test.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Пароль. validation.max.'
+        required: true
+        example: test
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      first_name: Иван
+      last_name: Иванов
+      email: ivan.ivanov@test.org
+      password: test
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"message\": \"Registration is successful\"\r\n}"
+        headers: []
+        description: success
+        custom: []
+      -
+        status: 422
+        content: "{\r\n    \"message\": \"validation.email\",\r\n    \"errors\": {\r\n        \"email\": [\r\n            \"validation.email\"\r\n        ]\r\n    }\r\n}"
+        headers: []
+        description: 'validation fail'
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/login
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: Авторизация
+      description: 'После пройденной аутентификации создается accessToken'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Email. validation.email validation.max.'
+        required: true
+        example: ivan.ivanov@test.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Пароль. validation.max.'
+        required: true
+        example: test
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      email: ivan.ivanov@test.org
+      password: test
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"message\": \"Authorization is successful\"\r\n}"
+        headers: []
+        description: success
+        custom: []
+      -
+        status: 403
+        content: "{\r\n    \"message\": \"Invalid email or password\"\r\n}"
+        headers: []
+        description: 'invalid email or password'
+        custom: []
+      -
+        status: 422
+        content: "{\r\n    \"message\": \"validation.email\",\r\n    \"errors\": {\r\n        \"email\": [\r\n            \"validation.email\"\r\n        ]\r\n    }\r\n}"
+        headers: []
+        description: 'validation fail'
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
