@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "88e18cb0-6443-4210-b6ae-a79ff8e9ece2",
+        "_postman_id": "2313c01f-a470-4606-9602-e8add772e5b5",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -72,7 +72,7 @@
                             "query": [],
                             "raw": "{{baseUrl}}\/api\/v1\/login"
                         },
-                        "method": "POST",
+                        "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -110,6 +110,48 @@
                             "code": 422,
                             "body": "{\r\n    \"message\": \"validation.email\",\r\n    \"errors\": {\r\n        \"email\": [\r\n            \"validation.email\"\r\n        ]\r\n    }\r\n}",
                             "name": "validation fail"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u0421\u043f\u0438\u0441\u043e\u043a \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u0439",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/users",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "2",
+                                    "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/users?page=2"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u041e\u0442\u0434\u0430\u0435\u0442\u0441\u044f \u043f\u043e\u0440\u0446\u0438\u043e\u043d\u043d\u043e \u043f\u043e 20 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u0439.\n\u0414\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0445 \u0441\u0442\u0440\u0430\u043d\u0438\u0446, \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e \u043f\u0435\u0440\u0435\u0434\u0430\u0442\u044c `page` \u0441 \u043d\u043e\u043c\u0435\u0440\u043e\u043c \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "[\r\n    {\r\n        \"id\": 1,\r\n        \"first_name\": \"\u0418\u0432\u0430\u043d\",\r\n        \"last_name\": \"\u0418\u0432\u0430\u043d\u043e\u0432\",\r\n        \"email\": \"ivan.ivanov@test.org\"\r\n    }\r\n]",
+                            "name": "success"
                         }
                     ]
                 }

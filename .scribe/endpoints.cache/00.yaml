@@ -87,7 +87,7 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - POST
+      - GET
     uri: api/v1/login
     metadata:
       groupName: Endpoints
@@ -146,6 +146,54 @@ endpoints:
         content: "{\r\n    \"message\": \"validation.email\",\r\n    \"errors\": {\r\n        \"email\": [\r\n            \"validation.email\"\r\n        ]\r\n    }\r\n}"
         headers: []
         description: 'validation fail'
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/users
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Список пользователей'
+      description: |-
+        Отдается порционно по 20 пользователей.
+        Для получения следующих страниц, необходимо передать `page` с номером страницы.
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      page:
+        name: page
+        description: 'Номер страницы.'
+        required: false
+        example: '2'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        custom: []
+    cleanQueryParameters:
+      page: '2'
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: "[\r\n    {\r\n        \"id\": 1,\r\n        \"first_name\": \"Иван\",\r\n        \"last_name\": \"Иванов\",\r\n        \"email\": \"ivan.ivanov@test.org\"\r\n    }\r\n]"
+        headers: []
+        description: success
         custom: []
     responseFields: []
     auth: []

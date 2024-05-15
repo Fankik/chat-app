@@ -82,7 +82,7 @@ paths:
                 - password
       security: []
   /api/v1/login:
-    post:
+    get:
       summary: Авторизация
       operationId: ''
       description: 'После пройденной аутентификации создается accessToken'
@@ -156,6 +156,40 @@ paths:
               required:
                 - email
                 - password
+      security: []
+  /api/v1/users:
+    get:
+      summary: 'Список пользователей'
+      operationId: ''
+      description: "Отдается порционно по 20 пользователей.\nДля получения следующих страниц, необходимо передать `page` с номером страницы."
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'Номер страницы.'
+          example: '2'
+          required: false
+          schema:
+            type: string
+            description: 'Номер страницы.'
+            example: '2'
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    first_name: Иван
+                    last_name: Иванов
+                    email: ivan.ivanov@test.org
+      tags:
+        - Endpoints
       security: []
 tags:
   -
