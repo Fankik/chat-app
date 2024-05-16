@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "330eb59c-9451-4607-aa7d-58e69f30e331",
+        "_postman_id": "7a162f75-bcc0-4d38-ac5a-4f99f52bef75",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -153,6 +153,45 @@
                     ]
                 },
                 {
+                    "name": "\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 \u0441\u043f\u0438\u0441\u043a\u0430 \u0447\u0430\u0442\u043e\u0432",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/chats",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "2",
+                                    "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/chats?page=2"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u041e\u0442\u0434\u0430\u0435\u0442\u0441\u044f \u043f\u043e\u0440\u0446\u0438\u043e\u043d\u043d\u043e \u043f\u043e 20 \u0447\u0430\u0442\u043e\u0432.\n\u0414\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0445 \u0441\u0442\u0440\u0430\u043d\u0438\u0446, \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e \u043f\u0435\u0440\u0435\u0434\u0430\u0442\u044c `page` \u0441 \u043d\u043e\u043c\u0435\u0440\u043e\u043c \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b"
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "[\r\n    {\r\n        \"id\": 1,\r\n        \"name\": \"\u0418\u0432\u0430\u043d \u0418\u0432\u0430\u043d\u043e\u0432\",\r\n        \"created_at\": \"2024-05-16T19:09:48.000000Z\",\r\n        \"updated_at\": \"2024-05-16T19:09:48.000000Z\",\r\n        \"users\": [\r\n            {\r\n                \"id\": 1,\r\n                \"first_name\": \"\u0418\u0432\u0430\u043d\",\r\n                \"last_name\": \"\u0418\u0432\u0430\u043d\u043e\u0432\",\r\n                \"email\": \"ivan.ivanov@test.org\"\r\n            },\r\n            {\r\n                \"id\": 2,\r\n                \"first_name\": \"\u041d\u0438\u043a\u043e\u043b\u0430\u0439\",\r\n                \"last_name\": \"\u041d\u0438\u043a\u043e\u043b\u0430\u0435\u0432\",\r\n                \"email\": \"nikolay.nikolayev@test.org\"\r\n            }\r\n        ]\r\n    }\r\n]",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
                     "name": "\u0421\u043e\u0437\u0434\u0430\u043d\u0438\u0435 \u0447\u0430\u0442\u0430",
                     "request": {
                         "url": {
@@ -174,7 +213,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":15}"
+                            "raw": "{\"user_id\":7}"
                         },
                         "description": "\u0421\u043e\u0437\u0434\u0430\u0435\u0442\u0441\u044f \u0447\u0430\u0442 \u0441 \u043f\u0435\u0440\u0435\u0434\u0430\u0432\u0430\u0435\u043c\u044b\u043c \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u043c, \u0435\u0441\u043b\u0438 \u0435\u0433\u043e \u043d\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442.\n\n\u0414\u043b\u044f \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044f \u0447\u0430\u0442\u0430 \u0441 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u043c, \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e \u0432 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u0430\u0445 \u043f\u0435\u0440\u0435\u0434\u0430\u0442\u044c `user_id`."
                     },
@@ -196,6 +235,67 @@
                             "code": 409,
                             "body": "{\r\n    \"message\" : \"Chat already exist\"\r\n}",
                             "name": "chat already exist"
+                        },
+                        {
+                            "header": [],
+                            "code": 409,
+                            "body": "{\r\n    \"message\" : \"It is impossible to create a chat with yourself\"\r\n}",
+                            "name": "chat with yourself"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u0421\u043e\u0437\u0434\u0430\u043d\u0438\u0435 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/chats\/:chatId\/messages",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/chats\/:chatId\/messages",
+                            "variable": [
+                                {
+                                    "id": "chatId",
+                                    "key": "chatId",
+                                    "value": "736",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"text\":\"vrkpaulnb\"}"
+                        },
+                        "description": "\u0421\u043e\u0437\u0434\u0430\u0435\u0442\u0441\u044f \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0435 \u0432 \u0447\u0430\u0442\u0435.\n\u041d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e \u0443\u043a\u0430\u0437\u0430\u0442\u044c \u0432 URI `chatId` \u0438 \u043f\u0435\u0440\u0435\u0434\u0430\u0442\u044c `text`\u0432 \u0442\u0435\u043b\u0435 \u0437\u0430\u043f\u0440\u043e\u0441\u0430."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\r\n    \"message\": \"Message created\"\r\n}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\r\n    \"message\": \"Chat not found\"\r\n}",
+                            "name": "chat not found"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\r\n    \"message\": \"validation.text\",\r\n    \"errors\": {\r\n        \"text\": [\r\n            \"validation.text\"\r\n        ]\r\n    }\r\n}",
+                            "name": "validation fail"
                         }
                     ]
                 }

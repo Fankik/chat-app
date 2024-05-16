@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Resources\ChatIndexResource;
 use App\Models\Chat;
+use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +14,37 @@ use Illuminate\Support\Facades\Auth;
  */
 class ChatController
 {
+
+    /**
+     * Получение списка чатов
+     *  
+     * Отдается порционно по 20 чатов.
+     * Для получения следующих страниц, необходимо передать `page` с номером страницы
+     * 
+     * @param Request $request
+     * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Resources\Json\JsonResource
+     *
+     * @queryParam page Номер страницы. Example: 2
+     * @responseFile status=200 scenario="success" storage/responses/chats/index.200.json 
+     * @authenticated
+     */
+    public function index(Request $request)
+    {
+        $page = $request->input('page') ?? 1;
+        $limit = 20;
+        $skip = ($page - 1) * $limit;
+
+        $user = Auth::user();
+
+        $chats = $user->chats()->with('firstMessage', 'users')
+            ->skip($skip)
+            ->limit($limit)
+            ->get()
+            ->sortByDesc('firstMessage.created_at');
+
+        return ChatIndexResource::collection($chats);
+    }
+
     /**
      * Создание чата
      *  

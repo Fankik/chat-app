@@ -17,6 +17,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
         //Чаты
+        Route::get('/chats', [ChatController::class, 'index'])->name('chats.index');
         Route::post('/chats', [ChatController::class, 'store'])->name('chats.store');
         Route::post('/chats/{chatId}/messages', [MessageController::class, 'store'])->whereNumber('chatId')->name('messages.store');
 

@@ -42,7 +42,7 @@ class MessageController
         $message['chat_id'] = $chat->id;
         $message['text'] = strip_tags($message['text']);
 
-        $message = new Message($message);
+        $message = Message::create($message);
 
         return response(['message' => 'Message created']);
     }

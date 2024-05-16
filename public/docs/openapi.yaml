@@ -191,6 +191,49 @@ paths:
       tags:
         - Endpoints
   /api/v1/chats:
+    get:
+      summary: 'Получение списка чатов'
+      operationId: ''
+      description: "Отдается порционно по 20 чатов.\nДля получения следующих страниц, необходимо передать `page` с номером страницы"
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'Номер страницы.'
+          example: '2'
+          required: false
+          schema:
+            type: string
+            description: 'Номер страницы.'
+            example: '2'
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    name: 'Иван Иванов'
+                    created_at: '2024-05-16T19:09:48.000000Z'
+                    updated_at: '2024-05-16T19:09:48.000000Z'
+                    users:
+                      -
+                        id: 1
+                        first_name: Иван
+                        last_name: Иванов
+                        email: ivan.ivanov@test.org
+                      -
+                        id: 2
+                        first_name: Николай
+                        last_name: Николаев
+                        email: nikolay.nikolayev@test.org
+      tags:
+        - Endpoints
     post:
       summary: 'Создание чата'
       operationId: ''
@@ -222,17 +265,17 @@ paths:
                     type: string
                     example: 'User not found'
         409:
-          description: 'chat already exist'
+          description: 'chat with yourself'
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: 'Chat already exist'
+                  message: 'It is impossible to create a chat with yourself'
                 properties:
                   message:
                     type: string
-                    example: 'Chat already exist'
+                    example: 'It is impossible to create a chat with yourself'
       tags:
         - Endpoints
       requestBody:
@@ -245,9 +288,88 @@ paths:
                 user_id:
                   type: integer
                   description: ''
-                  example: 15
+                  example: 7
               required:
                 - user_id
+  '/api/v1/chats/{chatId}/messages':
+    post:
+      summary: 'Создание сообщения'
+      operationId: ''
+      description: "Создается сообщение в чате.\nНеобходимо указать в URI `chatId` и передать `text`в теле запроса."
+      parameters: []
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Message created'
+                properties:
+                  message:
+                    type: string
+                    example: 'Message created'
+        404:
+          description: 'chat not found'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Chat not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Chat not found'
+        422:
+          description: 'validation fail'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: validation.text
+                  errors:
+                    text:
+                      - validation.text
+                properties:
+                  message:
+                    type: string
+                    example: validation.text
+                  errors:
+                    type: object
+                    properties:
+                      text:
+                        type: array
+                        example:
+                          - validation.text
+                        items:
+                          type: string
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: validation.max.
+                  example: vrkpaulnb
+              required:
+                - text
+    parameters:
+      -
+        in: path
+        name: chatId
+        description: ''
+        example: '736'
+        required: true
+        schema:
+          type: string
 tags:
   -
     name: Endpoints
