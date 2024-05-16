@@ -40,6 +40,8 @@ class MessageController
 
         $messages = $chat->messages()->skip($skip)->limit($limit)->latest('created_at')->get();
 
+        $messages->makeHidden('chat_id');
+
         return response($messages);
     }
 
