@@ -190,14 +190,38 @@ paths:
                     email: ivan.ivanov@test.org
       tags:
         - Endpoints
-  '/api/v1/chats/{userId}':
+  /api/v1/chats:
     post:
       summary: 'Создание чата'
       operationId: ''
-      description: 'Создается чат с передаваемым пользователем, если его не существует.'
+      description: "Создается чат с передаваемым пользователем, если его не существует.\n\nДля создания чата с пользователем, необходимо в параметрах передать `user_id`."
       parameters: []
       responses:
         200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Chat created'
+                properties:
+                  message:
+                    type: string
+                    example: 'Chat created'
+        404:
+          description: 'user not found'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'User not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'User not found'
+        409:
           description: 'chat already exist'
           content:
             application/json:
@@ -211,15 +235,19 @@ paths:
                     example: 'Chat already exist'
       tags:
         - Endpoints
-    parameters:
-      -
-        in: path
-        name: userId
-        description: ''
-        example: '955'
+      requestBody:
         required: true
-        schema:
-          type: string
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: ''
+                  example: 15
+              required:
+                - user_id
 tags:
   -
     name: Endpoints

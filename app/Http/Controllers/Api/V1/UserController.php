@@ -16,7 +16,7 @@ class UserController
      * Отдается порционно по 20 пользователей.
      * Для получения следующих страниц, необходимо передать `page` с номером страницы.
      *  
-     * @var Request $request
+     * @param Request $request
      * @return \Illuminate\Database\Eloquent\Collection<int, static>
      *
      * @queryParam page Номер страницы. Example: 2

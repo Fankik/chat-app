@@ -17,18 +17,31 @@ class ChatController
      *  
      * Создается чат с передаваемым пользователем, если его не существует.
      * 
-     * @var int $userId
+     * Для создания чата с пользователем, необходимо в параметрах передать `user_id`. 
+     * 
+     * @param Request $request
      * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
      *
      * @responseFile status=200 scenario="success" storage/responses/chats/store.200.json
-     * @responseFile status=200 scenario="user not found" storage/responses/chats/store.404.json
-     * @responseFile status=200 scenario="chat already exist" storage/responses/chats/store.409.json
+     * @responseFile status=404 scenario="user not found" storage/responses/chats/store.404.json
+     * @responseFile status=409 scenario="chat already exist" storage/responses/chats/store.409.json
+     * @responseFile status=409 scenario="chat with yourself" storage/responses/chats/store_yourself.409.json
      * @authenticated
      */
-    public function store(int $userId)
+    public function store(Request $request)
     {
+        $validate = $request->validate([
+            'user_id' => ['required', 'int'],
+        ]);
+
+        $userId = $validate['user_id'];
+
         $user = User::find($userId);
         $authUser = Auth::user();
+
+        if ($user->id === $authUser->id) {
+            return response(['message' => 'It is impossible to create a chat with yourself'], 409);
+        }
 
         if ($user === null) {
             return response(['message' => 'User not found'], 404);
@@ -38,7 +51,9 @@ class ChatController
             'users',
             function ($query) use ($user, $authUser) {
                 $query->whereIn('users.id', [$user->id, $authUser->id]);
-            }
+            },
+            '=',
+            2
         )->first();
 
         if ($chat === null) {

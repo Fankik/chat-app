@@ -78,8 +78,8 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-users">
                                 <a href="#endpoints-GETapi-v1-users">Список пользователей</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-chats--userId-">
-                                <a href="#endpoints-POSTapi-v1-chats--userId-">Создание чата</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-chats">
+                                <a href="#endpoints-POSTapi-v1-chats">Создание чата</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -92,7 +92,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 15, 2024</li>
+        <li>Last updated: May 16, 2024</li>
     </ul>
 </div>
 
@@ -586,21 +586,22 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                 </form>
 
-                    <h2 id="endpoints-POSTapi-v1-chats--userId-">Создание чата</h2>
+                    <h2 id="endpoints-POSTapi-v1-chats">Создание чата</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
 <p>Создается чат с передаваемым пользователем, если его не существует.</p>
+<p>Для создания чата с пользователем, необходимо в параметрах передать <code>user_id</code>.</p>
 
-<span id="example-requests-POSTapi-v1-chats--userId-">
+<span id="example-requests-POSTapi-v1-chats">
 <blockquote>Example request:</blockquote>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/chats/955"
+    "http://localhost/api/v1/chats"
 );
 
 const headers = {
@@ -608,14 +609,19 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "user_id": 15
+};
+
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
-<span id="example-responses-POSTapi-v1-chats--userId-">
+<span id="example-responses-POSTapi-v1-chats">
             <blockquote>
             <p>Example response (200, success):</p>
         </blockquote>
@@ -626,7 +632,7 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (200, user not found):</p>
+            <p>Example response (404, user not found):</p>
         </blockquote>
                 <pre>
 
@@ -635,7 +641,7 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (200, chat already exist):</p>
+            <p>Example response (409, chat already exist):</p>
         </blockquote>
                 <pre>
 
@@ -644,43 +650,43 @@ fetch(url, {
 }</code>
  </pre>
     </span>
-<span id="execution-results-POSTapi-v1-chats--userId-" hidden>
+<span id="execution-results-POSTapi-v1-chats" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-chats--userId-"></span>:
+                id="execution-response-status-POSTapi-v1-chats"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-chats--userId-"
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-chats"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-v1-chats--userId-" hidden>
+<span id="execution-error-POSTapi-v1-chats" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-chats--userId-">
+    <pre><code id="execution-error-message-POSTapi-v1-chats">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-v1-chats--userId-" data-method="POST"
-      data-path="api/v1/chats/{userId}"
+<form id="form-POSTapi-v1-chats" data-method="POST"
+      data-path="api/v1/chats"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-chats--userId-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-chats', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-chats--userId-"
-                    onclick="tryItOut('POSTapi-v1-chats--userId-');">Try it out ⚡
+                    id="btn-tryout-POSTapi-v1-chats"
+                    onclick="tryItOut('POSTapi-v1-chats');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-chats--userId-"
-                    onclick="cancelTryOut('POSTapi-v1-chats--userId-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-v1-chats"
+                    onclick="cancelTryOut('POSTapi-v1-chats');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-chats--userId-"
+                    id="btn-executetryout-POSTapi-v1-chats"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -688,7 +694,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/v1/chats/{userId}</code></b>
+            <b><code>api/v1/chats</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -696,7 +702,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-v1-chats--userId-"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-chats"
                value="application/json"
                data-component="header">
     <br>
@@ -707,25 +713,25 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-v1-chats--userId-"
+                              name="Accept"                data-endpoint="POSTapi-v1-chats"
                value="application/json"
                data-component="header">
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>userId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>user_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="userId"                data-endpoint="POSTapi-v1-chats--userId-"
-               value="955"
-               data-component="url">
+                <input type="number" style="display: none"
+               step="any"               name="user_id"                data-endpoint="POSTapi-v1-chats"
+               value="15"
+               data-component="body">
     <br>
-<p>Example: <code>955</code></p>
-            </div>
-                    </form>
+<p>Example: <code>15</code></p>
+        </div>
+        </form>
 
             
 

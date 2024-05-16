@@ -204,35 +204,38 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: 'api/v1/chats/{userId}'
+    uri: api/v1/chats
     metadata:
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
       title: 'Создание чата'
-      description: 'Создается чат с передаваемым пользователем, если его не существует.'
+      description: |-
+        Создается чат с передаваемым пользователем, если его не существует.
+
+        Для создания чата с пользователем, необходимо в параметрах передать `user_id`.
       authenticated: true
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      userId:
-        name: userId
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
         description: ''
         required: true
-        example: '955'
-        type: string
+        example: 15
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
-    cleanUrlParameters:
-      userId: '955'
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    cleanBodyParameters:
+      user_id: 15
     fileParameters: []
     responses:
       -
@@ -242,13 +245,13 @@ endpoints:
         description: success
         custom: []
       -
-        status: 200
+        status: 404
         content: "{\r\n    \"message\": \"User not found\"\r\n}"
         headers: []
         description: 'user not found'
         custom: []
       -
-        status: 200
+        status: 409
         content: "{\r\n    \"message\" : \"Chat already exist\"\r\n}"
         headers: []
         description: 'chat already exist'
