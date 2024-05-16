@@ -164,7 +164,7 @@ endpoints:
       description: |-
         Отдается порционно по 20 пользователей.
         Для получения следующих страниц, необходимо передать `page` с номером страницы.
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -192,6 +192,64 @@ endpoints:
         content: "[\r\n    {\r\n        \"id\": 1,\r\n        \"first_name\": \"Иван\",\r\n        \"last_name\": \"Иванов\",\r\n        \"email\": \"ivan.ivanov@test.org\"\r\n    }\r\n]"
         headers: []
         description: success
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/chats/{userId}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Создание чата'
+      description: 'Создается чат с передаваемым пользователем, если его не существует.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      userId:
+        name: userId
+        description: ''
+        required: true
+        example: '955'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      userId: '955'
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"message\": \"Chat created\"\r\n}"
+        headers: []
+        description: success
+        custom: []
+      -
+        status: 200
+        content: "{\r\n    \"message\": \"User not found\"\r\n}"
+        headers: []
+        description: 'user not found'
+        custom: []
+      -
+        status: 200
+        content: "{\r\n    \"message\" : \"Chat already exist\"\r\n}"
+        headers: []
+        description: 'chat already exist'
         custom: []
     responseFields: []
     auth: []

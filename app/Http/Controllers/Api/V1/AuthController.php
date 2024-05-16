@@ -17,7 +17,7 @@ class AuthController
      * 
      * После пройденной аутентификации создается accessToken 
      * 
-     * @param  Request $request
+     * @param Request $request
      * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
      * 
      * @responseFile status=200 scenario="success" storage/responses/auth/index.200.json
@@ -32,7 +32,7 @@ class AuthController
             //Пароль Example: test
             'password' => ['required', 'max:32']
         ]);
-
+  
         if (Auth::attempt($credentials)) {
             Auth::user()->createToken('accessToken', ['*'], now()->addWeek());
 
@@ -46,7 +46,7 @@ class AuthController
      * Регистрация
      * 
      * 
-     * @param  Request $request
+     * @param Request $request
      * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
      * 
      * @responseFile status=200 scenario="success" storage/responses/auth/store.200.json

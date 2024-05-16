@@ -190,7 +190,36 @@ paths:
                     email: ivan.ivanov@test.org
       tags:
         - Endpoints
-      security: []
+  '/api/v1/chats/{userId}':
+    post:
+      summary: 'Создание чата'
+      operationId: ''
+      description: 'Создается чат с передаваемым пользователем, если его не существует.'
+      parameters: []
+      responses:
+        200:
+          description: 'chat already exist'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Chat already exist'
+                properties:
+                  message:
+                    type: string
+                    example: 'Chat already exist'
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: userId
+        description: ''
+        example: '955'
+        required: true
+        schema:
+          type: string
 tags:
   -
     name: Endpoints
