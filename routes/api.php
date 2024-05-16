@@ -19,9 +19,10 @@ Route::prefix('v1')->group(function () {
         //Чаты
         Route::get('/chats', [ChatController::class, 'index'])->name('chats.index');
         Route::post('/chats', [ChatController::class, 'store'])->name('chats.store');
+
+        //Сообщения
+        Route::get('/chats/{chatId}/messages',[MessageController::class, 'index'])->whereNumber('chatId')->name('messages.index');
         Route::post('/chats/{chatId}/messages', [MessageController::class, 'store'])->whereNumber('chatId')->name('messages.store');
-
-
     });
 
 });

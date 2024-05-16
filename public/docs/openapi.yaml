@@ -288,10 +288,45 @@ paths:
                 user_id:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 5
               required:
                 - user_id
   '/api/v1/chats/{chatId}/messages':
+    get:
+      summary: 'Получение списка сообщений'
+      operationId: ''
+      description: "Отдается порционно по 20 чатов.\nДля получения следующих страниц, необходимо передать `page` с номером страницы"
+      parameters: []
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 6
+                    chat_id: 2
+                    text: test
+                    created_at: '2024-05-16T20:35:59.000000Z'
+                    updated_at: '2024-05-16T20:35:59.000000Z'
+        404:
+          description: 'chat not found'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Chat not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Chat not found'
+      tags:
+        - Endpoints
     post:
       summary: 'Создание сообщения'
       operationId: ''
@@ -358,7 +393,7 @@ paths:
                 text:
                   type: string
                   description: validation.max.
-                  example: vrkpaulnb
+                  example: ktqehjgxfnyhe
               required:
                 - text
     parameters:
@@ -366,7 +401,7 @@ paths:
         in: path
         name: chatId
         description: ''
-        example: '736'
+        example: '0'
         required: true
         schema:
           type: string
