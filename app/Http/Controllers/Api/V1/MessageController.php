@@ -12,6 +12,38 @@ use Illuminate\Support\Facades\Auth;
 class MessageController
 {
     /**
+     * Получение списка сообщений
+     *  
+     * Отдается порционно по 20 чатов.
+     * Для получения следующих страниц, необходимо передать `page` с номером страницы
+     * 
+     * @param int $chatId
+     * @param Request $request
+     * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
+     *
+     * @responseFile status=200 scenario="success" storage/responses/messages/index.200.json
+     * @responseFile status=404 scenario="chat not found" storage/responses/messages/index.404.json
+     * @authenticated
+     */
+    public function index(int $chatId, Request $request)
+    {
+        $page = $request->input('page') ?? 1;
+        $limit = 20;
+        $skip = ($page - 1) * $limit;
+
+        $user = Auth::user();
+        $chat = $user->chats()->where('chats.id', $chatId)->first();
+
+        if ($chat === null) {
+            return response(['message' => 'Chat not found'], 404);
+        }
+
+        $messages = $chat->messages()->skip($skip)->limit($limit)->latest('created_at')->get();
+
+        return response($messages);
+    }
+
+    /**
      * Создание сообщения
      *  
      * Создается сообщение в чате. 

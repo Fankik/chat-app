@@ -84,6 +84,9 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-chats">
                                 <a href="#endpoints-POSTapi-v1-chats">Создание чата</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-chats--chatId--messages">
+                                <a href="#endpoints-GETapi-v1-chats--chatId--messages">Получение списка сообщений</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-chats--chatId--messages">
                                 <a href="#endpoints-POSTapi-v1-chats--chatId--messages">Создание сообщения</a>
                             </li>
@@ -765,7 +768,7 @@ const headers = {
 };
 
 let body = {
-    "user_id": 7
+    "user_id": 5
 };
 
 fetch(url, {
@@ -890,12 +893,151 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="user_id"                data-endpoint="POSTapi-v1-chats"
-               value="7"
+               value="5"
                data-component="body">
     <br>
-<p>Example: <code>7</code></p>
+<p>Example: <code>5</code></p>
         </div>
         </form>
+
+                    <h2 id="endpoints-GETapi-v1-chats--chatId--messages">Получение списка сообщений</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Отдается порционно по 20 чатов.
+Для получения следующих страниц, необходимо передать <code>page</code> с номером страницы</p>
+
+<span id="example-requests-GETapi-v1-chats--chatId--messages">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/chats/0/messages"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-chats--chatId--messages">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">[
+    {
+        &quot;id&quot;: 6,
+        &quot;chat_id&quot;: 2,
+        &quot;text&quot;: &quot;test&quot;,
+        &quot;created_at&quot;: &quot;2024-05-16T20:35:59.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-05-16T20:35:59.000000Z&quot;
+    }
+]</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, chat not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Chat not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-chats--chatId--messages" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-chats--chatId--messages"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-chats--chatId--messages"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-chats--chatId--messages" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-chats--chatId--messages">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-chats--chatId--messages" data-method="GET"
+      data-path="api/v1/chats/{chatId}/messages"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-chats--chatId--messages', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-chats--chatId--messages"
+                    onclick="tryItOut('GETapi-v1-chats--chatId--messages');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-chats--chatId--messages"
+                    onclick="cancelTryOut('GETapi-v1-chats--chatId--messages');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-chats--chatId--messages"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/chats/{chatId}/messages</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-chats--chatId--messages"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-chats--chatId--messages"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>chatId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="chatId"                data-endpoint="GETapi-v1-chats--chatId--messages"
+               value="0"
+               data-component="url">
+    <br>
+<p>Example: <code>0</code></p>
+            </div>
+                    </form>
 
                     <h2 id="endpoints-POSTapi-v1-chats--chatId--messages">Создание сообщения</h2>
 
@@ -912,7 +1054,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/chats/736/messages"
+    "http://localhost/api/v1/chats/3/messages"
 );
 
 const headers = {
@@ -921,7 +1063,7 @@ const headers = {
 };
 
 let body = {
-    "text": "vrkpaulnb"
+    "text": "ktqehjgxfnyhe"
 };
 
 fetch(url, {
@@ -1042,10 +1184,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="chatId"                data-endpoint="POSTapi-v1-chats--chatId--messages"
-               value="736"
+               value="3"
                data-component="url">
     <br>
-<p>Example: <code>736</code></p>
+<p>Example: <code>3</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -1054,10 +1196,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="text"                data-endpoint="POSTapi-v1-chats--chatId--messages"
-               value="vrkpaulnb"
+               value="ktqehjgxfnyhe"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vrkpaulnb</code></p>
+<p>validation.max. Example: <code>ktqehjgxfnyhe</code></p>
         </div>
         </form>
 
