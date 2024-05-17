@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use Illuminate\Database\Eloquent\Collection;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,16 +15,17 @@ class UserController
      * Список пользователей
      * 
      * Отдается порционно по 20 пользователей.
-     * Для получения следующих страниц, необходимо передать `page` с номером страницы.
+     * 
+     * Для получения следующих страниц необходимо передать `page` с номером страницы.
      *  
      * @param Request $request
-     * @return \Illuminate\Database\Eloquent\Collection<int, static>
+     * @return Collection
      *
      * @queryParam page Номер страницы. Example: 2
      * @responseFile status=200 scenario="success" storage/responses/users/index.200.json
      * @authenticated
      */
-    public function index(Request $request)
+    public function index(Request $request): Collection
     {
         $page = $request->input('page') ?? 1;
         $limit = 20;

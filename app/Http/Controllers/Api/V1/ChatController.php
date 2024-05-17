@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use Illuminate\Http\Response;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\ChatIndexResource;
 use App\Models\Chat;
 use App\Models\User;
@@ -13,21 +16,21 @@ use Illuminate\Support\Facades\Auth;
  */
 class ChatController
 {
-
     /**
      * Получение списка чатов
      *  
      * Отдается порционно по 20 чатов.
-     * Для получения следующих страниц, необходимо передать `page` с номером страницы
+     * 
+     * Для получения следующих страниц необходимо передать `page` с номером страницы.
      * 
      * @param Request $request
-     * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Resources\Json\JsonResource
+     * @return JsonResource
      *
      * @queryParam page Номер страницы. Example: 2
      * @responseFile status=200 scenario="success" storage/responses/chats/index.200.json 
      * @authenticated
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResource
     {
         $page = $request->input('page') ?? 1;
         $limit = 20;
@@ -40,7 +43,7 @@ class ChatController
             ->limit($limit)
             ->get()
             ->sortByDesc('lastMessage.created_at');
-   
+
         ChatIndexResource::withoutWrapping();
 
         return ChatIndexResource::collection($chats);
@@ -51,10 +54,10 @@ class ChatController
      *  
      * Создается чат с передаваемым пользователем, если его не существует.
      * 
-     * Для создания чата с пользователем, необходимо в параметрах передать `user_id`. 
+     * Для создания чата с пользователем необходимо в параметрах передать `user_id`. 
      * 
      * @param Request $request
-     * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
+     * @return Response|ResponseFactory
      *
      * @responseFile status=200 scenario="success" storage/responses/chats/store.200.json
      * @responseFile status=404 scenario="user not found" storage/responses/chats/store.404.json
@@ -62,9 +65,10 @@ class ChatController
      * @responseFile status=409 scenario="chat with yourself" storage/responses/chats/store_yourself.409.json
      * @authenticated
      */
-    public function store(Request $request)
+    public function store(Request $request): Response|ResponseFactory
     {
         $validate = $request->validate([
+            //user_id Example: 2
             'user_id' => ['required', 'int'],
         ]);
 
@@ -73,12 +77,12 @@ class ChatController
         $user = User::find($userId);
         $authUser = Auth::user();
 
-        if ($user->id === $authUser->id) {
-            return response(['message' => 'It is impossible to create a chat with yourself'], 409);
-        }
-
         if ($user === null) {
             return response(['message' => 'User not found'], 404);
+        }
+
+        if ($user->id === $authUser->id) {
+            return response(['message' => 'It is impossible to create a chat with yourself'], 409);
         }
 
         $chat = Chat::whereHas(

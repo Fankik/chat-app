@@ -1,8 +1,8 @@
 {
-    "message": "validation.text",
+    "message": "validation.max",
     "errors": {
         "text": [
-            "validation.text"
+            "validation.max"
         ]
     }
 }

@@ -11,7 +11,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: Регистрация
-      description: ''
+      description: 'Для регистрации пользователя необходимо передать `first_name`, `last_name`, `email`, `password` в теле запроса.'
       authenticated: false
       custom: []
     headers:
@@ -93,7 +93,10 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: Авторизация
-      description: 'После пройденной аутентификации создается accessToken'
+      description: |-
+        Для прохождения аутентификации необходимо указать `email` и `password` в теле запроса.
+
+        После пройденной аутентификации создается accessToken.
       authenticated: false
       custom: []
     headers:
@@ -163,7 +166,8 @@ endpoints:
       title: 'Список пользователей'
       description: |-
         Отдается порционно по 20 пользователей.
-        Для получения следующих страниц, необходимо передать `page` с номером страницы.
+
+        Для получения следующих страниц необходимо передать `page` с номером страницы.
       authenticated: true
       custom: []
     headers:
@@ -211,7 +215,8 @@ endpoints:
       title: 'Получение списка чатов'
       description: |-
         Отдается порционно по 20 чатов.
-        Для получения следующих страниц, необходимо передать `page` с номером страницы
+
+        Для получения следующих страниц необходимо передать `page` с номером страницы.
       authenticated: true
       custom: []
     headers:
@@ -260,7 +265,7 @@ endpoints:
       description: |-
         Создается чат с передаваемым пользователем, если его не существует.
 
-        Для создания чата с пользователем, необходимо в параметрах передать `user_id`.
+        Для создания чата с пользователем необходимо в параметрах передать `user_id`.
       authenticated: true
       custom: []
     headers:
@@ -273,15 +278,15 @@ endpoints:
     bodyParameters:
       user_id:
         name: user_id
-        description: ''
+        description: user_id.
         required: true
-        example: 5
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      user_id: 5
+      user_id: 2
     fileParameters: []
     responses:
       -
@@ -326,7 +331,8 @@ endpoints:
       title: 'Получение списка сообщений'
       description: |-
         Отдается порционно по 20 чатов.
-        Для получения следующих страниц, необходимо передать `page` с номером страницы
+
+        Для получения следующих страниц необходимо передать `page` с номером страницы.
       authenticated: true
       custom: []
     headers:
@@ -337,13 +343,13 @@ endpoints:
         name: chatId
         description: ''
         required: true
-        example: '0'
+        example: '04423903'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      chatId: '0'
+      chatId: '04423903'
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -380,6 +386,7 @@ endpoints:
       title: 'Создание сообщения'
       description: |-
         Создается сообщение в чате.
+
         Необходимо указать в URI `chatId` и передать `text`в теле запроса.
       authenticated: true
       custom: []
@@ -391,27 +398,27 @@ endpoints:
         name: chatId
         description: ''
         required: true
-        example: '3'
+        example: '9'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      chatId: '3'
+      chatId: '9'
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       text:
         name: text
-        description: validation.max.
+        description: 'Text. validation.max.'
         required: true
-        example: ktqehjgxfnyhe
+        example: 'Тестовое сообщение'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      text: ktqehjgxfnyhe
+      text: 'Тестовое сообщение'
     fileParameters: []
     responses:
       -
@@ -428,7 +435,7 @@ endpoints:
         custom: []
       -
         status: 422
-        content: "{\r\n    \"message\": \"validation.text\",\r\n    \"errors\": {\r\n        \"text\": [\r\n            \"validation.text\"\r\n        ]\r\n    }\r\n}"
+        content: "{\r\n    \"message\": \"validation.max\",\r\n    \"errors\": {\r\n        \"text\": [\r\n            \"validation.max\"\r\n        ]\r\n    }\r\n}"
         headers: []
         description: 'validation fail'
         custom: []

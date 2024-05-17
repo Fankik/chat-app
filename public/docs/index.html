@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Laravel Documentation</title>
+    <title>Документация тестового задания</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 
@@ -101,7 +101,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 16, 2024</li>
+        <li>Last updated: May 17, 2024</li>
     </ul>
 </div>
 
@@ -126,7 +126,7 @@
 <p>
 </p>
 
-
+<p>Для регистрации пользователя необходимо передать <code>first_name</code>, <code>last_name</code>, <code>email</code>, <code>password</code> в теле запроса.</p>
 
 <span id="example-requests-POSTapi-v1-register">
 <blockquote>Example request:</blockquote>
@@ -303,7 +303,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>
 </p>
 
-<p>После пройденной аутентификации создается accessToken</p>
+<p>Для прохождения аутентификации необходимо указать <code>email</code> и <code>password</code> в теле запроса.</p>
+<p>После пройденной аутентификации создается accessToken.</p>
 
 <span id="example-requests-GETapi-v1-login">
 <blockquote>Example request:</blockquote>
@@ -466,8 +467,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Отдается порционно по 20 пользователей.
-Для получения следующих страниц, необходимо передать <code>page</code> с номером страницы.</p>
+<p>Отдается порционно по 20 пользователей.</p>
+<p>Для получения следующих страниц необходимо передать <code>page</code> с номером страницы.</p>
 
 <span id="example-requests-GETapi-v1-users">
 <blockquote>Example request:</blockquote>
@@ -601,8 +602,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Отдается порционно по 20 чатов.
-Для получения следующих страниц, необходимо передать <code>page</code> с номером страницы</p>
+<p>Отдается порционно по 20 чатов.</p>
+<p>Для получения следующих страниц необходимо передать <code>page</code> с номером страницы.</p>
 
 <span id="example-requests-GETapi-v1-chats">
 <blockquote>Example request:</blockquote>
@@ -751,7 +752,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </p>
 
 <p>Создается чат с передаваемым пользователем, если его не существует.</p>
-<p>Для создания чата с пользователем, необходимо в параметрах передать <code>user_id</code>.</p>
+<p>Для создания чата с пользователем необходимо в параметрах передать <code>user_id</code>.</p>
 
 <span id="example-requests-POSTapi-v1-chats">
 <blockquote>Example request:</blockquote>
@@ -768,7 +769,7 @@ const headers = {
 };
 
 let body = {
-    "user_id": 5
+    "user_id": 2
 };
 
 fetch(url, {
@@ -893,10 +894,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="user_id"                data-endpoint="POSTapi-v1-chats"
-               value="5"
+               value="2"
                data-component="body">
     <br>
-<p>Example: <code>5</code></p>
+<p>user_id. Example: <code>2</code></p>
         </div>
         </form>
 
@@ -906,8 +907,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Отдается порционно по 20 чатов.
-Для получения следующих страниц, необходимо передать <code>page</code> с номером страницы</p>
+<p>Отдается порционно по 20 чатов.</p>
+<p>Для получения следующих страниц необходимо передать <code>page</code> с номером страницы.</p>
 
 <span id="example-requests-GETapi-v1-chats--chatId--messages">
 <blockquote>Example request:</blockquote>
@@ -915,7 +916,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/chats/0/messages"
+    "http://localhost/api/v1/chats/04423903/messages"
 );
 
 const headers = {
@@ -1032,10 +1033,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="chatId"                data-endpoint="GETapi-v1-chats--chatId--messages"
-               value="0"
+               value="04423903"
                data-component="url">
     <br>
-<p>Example: <code>0</code></p>
+<p>Example: <code>04423903</code></p>
             </div>
                     </form>
 
@@ -1045,8 +1046,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Создается сообщение в чате.
-Необходимо указать в URI <code>chatId</code> и передать <code>text</code>в теле запроса.</p>
+<p>Создается сообщение в чате.</p>
+<p>Необходимо указать в URI <code>chatId</code> и передать <code>text</code>в теле запроса.</p>
 
 <span id="example-requests-POSTapi-v1-chats--chatId--messages">
 <blockquote>Example request:</blockquote>
@@ -1054,7 +1055,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/chats/3/messages"
+    "http://localhost/api/v1/chats/9/messages"
 );
 
 const headers = {
@@ -1063,7 +1064,7 @@ const headers = {
 };
 
 let body = {
-    "text": "ktqehjgxfnyhe"
+    "text": "Тестовое сообщение"
 };
 
 fetch(url, {
@@ -1099,10 +1100,10 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;validation.text&quot;,
+    &quot;message&quot;: &quot;validation.max&quot;,
     &quot;errors&quot;: {
         &quot;text&quot;: [
-            &quot;validation.text&quot;
+            &quot;validation.max&quot;
         ]
     }
 }</code>
@@ -1184,10 +1185,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="chatId"                data-endpoint="POSTapi-v1-chats--chatId--messages"
-               value="3"
+               value="9"
                data-component="url">
     <br>
-<p>Example: <code>3</code></p>
+<p>Example: <code>9</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -1196,10 +1197,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="text"                data-endpoint="POSTapi-v1-chats--chatId--messages"
-               value="ktqehjgxfnyhe"
+               value="Тестовое сообщение"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>ktqehjgxfnyhe</code></p>
+<p>Text. validation.max. Example: <code>Тестовое сообщение</code></p>
         </div>
         </form>
 
