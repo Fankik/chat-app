@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Resources\ChatIndexResource;
 use App\Models\Chat;
-use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,11 +35,13 @@ class ChatController
 
         $user = Auth::user();
 
-        $chats = $user->chats()->with('firstMessage', 'users')
+        $chats = $user->chats()->with('lastMessage', 'users')
             ->skip($skip)
             ->limit($limit)
             ->get()
-            ->sortByDesc('firstMessage.created_at');
+            ->sortByDesc('lastMessage.created_at');
+   
+        ChatIndexResource::withoutWrapping();
 
         return ChatIndexResource::collection($chats);
     }

@@ -19,7 +19,7 @@ class Chat extends Model
      */
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'chat_users');
+        return $this->belongsToMany(User::class, 'chat_users')->orderBy('id');
     }
 
     /**
@@ -33,12 +33,12 @@ class Chat extends Model
     }
 
     /**
-     * Первое сообщение чата
+     * Последнее сообщение чата
      * 
      * @return HasOne
      */
-    public function firstMessage(): HasOne
+    public function lastMessage(): HasOne
     {
-        return $this->hasOne(Message::class)->orderBy('created_at', 'desc');
+        return $this->hasOne(Message::class)->latest('created_at');
     }
 }

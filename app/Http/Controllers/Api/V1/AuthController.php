@@ -32,7 +32,7 @@ class AuthController
             //Пароль Example: test
             'password' => ['required', 'max:32']
         ]);
-  
+        
         if (Auth::attempt($credentials)) {
             Auth::user()->createToken('accessToken', ['*'], now()->addWeek());
 

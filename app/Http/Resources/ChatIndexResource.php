@@ -17,8 +17,6 @@ class ChatIndexResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        self::withoutWrapping();
-
         return [
             'id' => $this->id,
             'name' => $this->users->where('id', '!=', $this->pivot->user_id)->first()->full_name,
