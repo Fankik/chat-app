@@ -297,7 +297,7 @@ paths:
     get:
       summary: 'Получение списка сообщений'
       operationId: ''
-      description: "Отдается порционно по 20 чатов.\n\nДля получения следующих страниц необходимо передать `page` с номером страницы."
+      description: "Отдается порционно по 20 сообщений.\n\nДля получения следующих страниц необходимо передать `page` с номером страницы."
       parameters:
         -
           in: query
@@ -413,7 +413,7 @@ paths:
         in: path
         name: chatId
         description: ''
-        example: '239'
+        example: '0'
         required: true
         schema:
           type: string

@@ -908,7 +908,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Отдается порционно по 20 чатов.</p>
+<p>Отдается порционно по 20 сообщений.</p>
 <p>Для получения следующих страниц необходимо передать <code>page</code> с номером страницы.</p>
 
 <span id="example-requests-GETapi-v1-chats--chatId--messages">
@@ -917,7 +917,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/chats/239/messages"
+    "http://localhost/api/v1/chats/0/messages"
 );
 
 const params = {
@@ -1040,10 +1040,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="chatId"                data-endpoint="GETapi-v1-chats--chatId--messages"
-               value="239"
+               value="0"
                data-component="url">
     <br>
-<p>Example: <code>239</code></p>
+<p>Example: <code>0</code></p>
             </div>
                         <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
                                     <div style="padding-left: 28px; clear: unset;">
@@ -1074,7 +1074,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/chats/7792/messages"
+    "http://localhost/api/v1/chats/17/messages"
 );
 
 const headers = {
@@ -1204,10 +1204,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="chatId"                data-endpoint="POSTapi-v1-chats--chatId--messages"
-               value="7792"
+               value="17"
                data-component="url">
     <br>
-<p>Example: <code>7792</code></p>
+<p>Example: <code>17</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">

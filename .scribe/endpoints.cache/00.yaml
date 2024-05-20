@@ -399,7 +399,7 @@ endpoints:
       subgroupDescription: ''
       title: 'Получение списка сообщений'
       description: |-
-        Отдается порционно по 20 чатов.
+        Отдается порционно по 20 сообщений.
 
         Для получения следующих страниц необходимо передать `page` с номером страницы.
       authenticated: true
@@ -412,13 +412,13 @@ endpoints:
         name: chatId
         description: ''
         required: true
-        example: '239'
+        example: '0'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      chatId: '239'
+      chatId: '0'
     queryParameters:
       page:
         name: page
@@ -489,13 +489,13 @@ endpoints:
         name: chatId
         description: ''
         required: true
-        example: '7792'
+        example: '17'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      chatId: '7792'
+      chatId: '17'
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
