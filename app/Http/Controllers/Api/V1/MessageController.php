@@ -24,6 +24,7 @@ class MessageController
      * @param Request $request
      * @return Response|ResponseFactory
      *
+     * @queryParam page Номер страницы. Example: 1
      * @responseFile status=200 scenario="success" storage/responses/messages/index.200.json
      * @responseFile status=404 scenario="chat not found" storage/responses/messages/index.404.json
      * @authenticated

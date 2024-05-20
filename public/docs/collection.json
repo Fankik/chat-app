@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044f \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0433\u043e \u0437\u0430\u0434\u0430\u043d\u0438\u044f",
-        "_postman_id": "a18ad133-4b8d-46e0-ac72-5fc2315cd2db",
+        "_postman_id": "fc44f7c5-8104-4d34-aadd-3f9a5d21ae90",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -52,13 +52,13 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\r\n    \"message\": \"Registration is successful\"\r\n}",
+                            "body": "{\n    \"message\": \"Registration is successful\"\n}",
                             "name": "success"
                         },
                         {
                             "header": [],
                             "code": 422,
-                            "body": "{\r\n    \"message\": \"validation.email\",\r\n    \"errors\": {\r\n        \"email\": [\r\n            \"validation.email\"\r\n        ]\r\n    }\r\n}",
+                            "body": "{\n    \"message\": \"validation.email\",\n    \"errors\": {\n        \"email\": [\n            \"validation.email\"\n        ]\n    }\n}",
                             "name": "validation fail"
                         }
                     ]
@@ -69,8 +69,21 @@
                         "url": {
                             "host": "{{baseUrl}}",
                             "path": "api\/v1\/login",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/login"
+                            "query": [
+                                {
+                                    "key": "email",
+                                    "value": "ivan.ivanov%40test.org",
+                                    "description": "Email. validation.email validation.max.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "password",
+                                    "value": "test",
+                                    "description": "\u041f\u0430\u0440\u043e\u043b\u044c. validation.max.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/login?email=ivan.ivanov%40test.org&password=test"
                         },
                         "method": "GET",
                         "header": [
@@ -83,10 +96,7 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"email\":\"ivan.ivanov@test.org\",\"password\":\"test\"}"
-                        },
+                        "body": null,
                         "description": "\u0414\u043b\u044f \u043f\u0440\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e \u0443\u043a\u0430\u0437\u0430\u0442\u044c `email` \u0438 `password` \u0432 \u0442\u0435\u043b\u0435 \u0437\u0430\u043f\u0440\u043e\u0441\u0430.\n\n\u041f\u043e\u0441\u043b\u0435 \u043f\u0440\u043e\u0439\u0434\u0435\u043d\u043d\u043e\u0439 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u0441\u043e\u0437\u0434\u0430\u0435\u0442\u0441\u044f accessToken.",
                         "auth": {
                             "type": "noauth"
@@ -96,19 +106,19 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\r\n    \"message\": \"Authorization is successful\"\r\n}",
+                            "body": "{\n    \"message\": \"Authorization is successful\"\n}",
                             "name": "success"
                         },
                         {
                             "header": [],
                             "code": 403,
-                            "body": "{\r\n    \"message\": \"Invalid email or password\"\r\n}",
+                            "body": "{\n    \"message\": \"Invalid email or password\"\n}",
                             "name": "invalid email or password"
                         },
                         {
                             "header": [],
                             "code": 422,
-                            "body": "{\r\n    \"message\": \"validation.email\",\r\n    \"errors\": {\r\n        \"email\": [\r\n            \"validation.email\"\r\n        ]\r\n    }\r\n}",
+                            "body": "{\n    \"message\": \"validation.email\",\n    \"errors\": {\n        \"email\": [\n            \"validation.email\"\n        ]\n    }\n}",
                             "name": "validation fail"
                         }
                     ]
@@ -122,12 +132,12 @@
                             "query": [
                                 {
                                     "key": "page",
-                                    "value": "2",
+                                    "value": "1",
                                     "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b.",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/users?page=2"
+                            "raw": "{{baseUrl}}\/api\/v1\/users?page=1"
                         },
                         "method": "GET",
                         "header": [
@@ -147,7 +157,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "[\r\n    {\r\n        \"id\": 1,\r\n        \"first_name\": \"\u0418\u0432\u0430\u043d\",\r\n        \"last_name\": \"\u0418\u0432\u0430\u043d\u043e\u0432\",\r\n        \"email\": \"ivan.ivanov@test.org\"\r\n    }\r\n]",
+                            "body": "[\n    {\n        \"id\": 1,\n        \"first_name\": \"\u0418\u0432\u0430\u043d\",\n        \"last_name\": \"\u0418\u0432\u0430\u043d\u043e\u0432\",\n        \"email\": \"ivan.ivanov@test.org\"\n    }\n]",
                             "name": "success"
                         }
                     ]
@@ -161,12 +171,12 @@
                             "query": [
                                 {
                                     "key": "page",
-                                    "value": "2",
+                                    "value": "1",
                                     "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b.",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/chats?page=2"
+                            "raw": "{{baseUrl}}\/api\/v1\/chats?page=1"
                         },
                         "method": "GET",
                         "header": [
@@ -186,7 +196,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "[\r\n    {\r\n        \"id\": 1,\r\n        \"name\": \"\u0418\u0432\u0430\u043d \u0418\u0432\u0430\u043d\u043e\u0432\",\r\n        \"created_at\": \"2024-05-16T19:09:48.000000Z\",\r\n        \"updated_at\": \"2024-05-16T19:09:48.000000Z\",\r\n        \"users\": [\r\n            {\r\n                \"id\": 1,\r\n                \"first_name\": \"\u0418\u0432\u0430\u043d\",\r\n                \"last_name\": \"\u0418\u0432\u0430\u043d\u043e\u0432\",\r\n                \"email\": \"ivan.ivanov@test.org\"\r\n            },\r\n            {\r\n                \"id\": 2,\r\n                \"first_name\": \"\u041d\u0438\u043a\u043e\u043b\u0430\u0439\",\r\n                \"last_name\": \"\u041d\u0438\u043a\u043e\u043b\u0430\u0435\u0432\",\r\n                \"email\": \"nikolay.nikolayev@test.org\"\r\n            }\r\n        ]\r\n    }\r\n]",
+                            "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"\u0418\u0432\u0430\u043d \u0418\u0432\u0430\u043d\u043e\u0432\",\n        \"created_at\": \"2024-05-16T19:09:48.000000Z\",\n        \"updated_at\": \"2024-05-16T19:09:48.000000Z\",\n        \"users\": [\n            {\n                \"id\": 1,\n                \"first_name\": \"\u0418\u0432\u0430\u043d\",\n                \"last_name\": \"\u0418\u0432\u0430\u043d\u043e\u0432\",\n                \"email\": \"ivan.ivanov@test.org\"\n            },\n            {\n                \"id\": 2,\n                \"first_name\": \"\u041d\u0438\u043a\u043e\u043b\u0430\u0439\",\n                \"last_name\": \"\u041d\u0438\u043a\u043e\u043b\u0430\u0435\u0432\",\n                \"email\": \"nikolay.nikolayev@test.org\"\n            }\n        ]\n    }\n]",
                             "name": "success"
                         }
                     ]
@@ -221,25 +231,25 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\r\n    \"message\": \"Chat created\"\r\n}",
+                            "body": "{\n    \"message\": \"Chat created\"\n}",
                             "name": "success"
                         },
                         {
                             "header": [],
                             "code": 404,
-                            "body": "{\r\n    \"message\": \"User not found\"\r\n}",
+                            "body": "{\n    \"message\": \"User not found\"\n}",
                             "name": "user not found"
                         },
                         {
                             "header": [],
                             "code": 409,
-                            "body": "{\r\n    \"message\" : \"Chat already exist\"\r\n}",
+                            "body": "{\n    \"message\" : \"Chat already exist\"\n}",
                             "name": "chat already exist"
                         },
                         {
                             "header": [],
                             "code": 409,
-                            "body": "{\r\n    \"message\" : \"It is impossible to create a chat with yourself\"\r\n}",
+                            "body": "{\n    \"message\" : \"It is impossible to create a chat with yourself\"\n}",
                             "name": "chat with yourself"
                         }
                     ]
@@ -250,13 +260,20 @@
                         "url": {
                             "host": "{{baseUrl}}",
                             "path": "api\/v1\/chats\/:chatId\/messages",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/chats\/:chatId\/messages",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/chats\/:chatId\/messages?page=1",
                             "variable": [
                                 {
                                     "id": "chatId",
                                     "key": "chatId",
-                                    "value": "04423903",
+                                    "value": "239",
                                     "description": ""
                                 }
                             ]
@@ -279,13 +296,13 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "[\r\n    {\r\n        \"id\": 6,\r\n        \"chat_id\": 2,\r\n        \"text\": \"test\",\r\n        \"created_at\": \"2024-05-16T20:35:59.000000Z\",\r\n        \"updated_at\": \"2024-05-16T20:35:59.000000Z\"\r\n    }\r\n]",
+                            "body": "[\n    {\n        \"id\": 6,\n        \"chat_id\": 2,\n        \"text\": \"test\",\n        \"created_at\": \"2024-05-16T20:35:59.000000Z\",\n        \"updated_at\": \"2024-05-16T20:35:59.000000Z\"\n    }\n]",
                             "name": "success"
                         },
                         {
                             "header": [],
                             "code": 404,
-                            "body": "{\r\n    \"message\": \"Chat not found\"\r\n}",
+                            "body": "{\n    \"message\": \"Chat not found\"\n}",
                             "name": "chat not found"
                         }
                     ]
@@ -302,7 +319,7 @@
                                 {
                                     "id": "chatId",
                                     "key": "chatId",
-                                    "value": "9",
+                                    "value": "7792",
                                     "description": ""
                                 }
                             ]
@@ -328,19 +345,19 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\r\n    \"message\": \"Message created\"\r\n}",
+                            "body": "{\n    \"message\": \"Message created\"\n}",
                             "name": "success"
                         },
                         {
                             "header": [],
                             "code": 404,
-                            "body": "{\r\n    \"message\": \"Chat not found\"\r\n}",
+                            "body": "{\n    \"message\": \"Chat not found\"\n}",
                             "name": "chat not found"
                         },
                         {
                             "header": [],
                             "code": 422,
-                            "body": "{\r\n    \"message\": \"validation.max\",\r\n    \"errors\": {\r\n        \"text\": [\r\n            \"validation.max\"\r\n        ]\r\n    }\r\n}",
+                            "body": "{\n    \"message\": \"validation.max\",\n    \"errors\": {\n        \"text\": [\n            \"validation.max\"\n        ]\n    }\n}",
                             "name": "validation fail"
                         }
                     ]

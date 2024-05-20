@@ -86,7 +86,27 @@ paths:
       summary: Авторизация
       operationId: ''
       description: "Для прохождения аутентификации необходимо указать `email` и `password` в теле запроса.\n\nПосле пройденной аутентификации создается accessToken."
-      parameters: []
+      parameters:
+        -
+          in: query
+          name: email
+          description: 'Email. validation.email validation.max.'
+          example: ivan.ivanov@test.org
+          required: true
+          schema:
+            type: string
+            description: 'Email. validation.email validation.max.'
+            example: ivan.ivanov@test.org
+        -
+          in: query
+          name: password
+          description: 'Пароль. validation.max.'
+          example: test
+          required: true
+          schema:
+            type: string
+            description: 'Пароль. validation.max.'
+            example: test
       responses:
         200:
           description: success
@@ -138,24 +158,6 @@ paths:
                           type: string
       tags:
         - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  description: 'Email. validation.email validation.max.'
-                  example: ivan.ivanov@test.org
-                password:
-                  type: string
-                  description: 'Пароль. validation.max.'
-                  example: test
-              required:
-                - email
-                - password
       security: []
   /api/v1/users:
     get:
@@ -167,12 +169,12 @@ paths:
           in: query
           name: page
           description: 'Номер страницы.'
-          example: '2'
+          example: '1'
           required: false
           schema:
             type: string
             description: 'Номер страницы.'
-            example: '2'
+            example: '1'
       responses:
         200:
           description: success
@@ -200,12 +202,12 @@ paths:
           in: query
           name: page
           description: 'Номер страницы.'
-          example: '2'
+          example: '1'
           required: false
           schema:
             type: string
             description: 'Номер страницы.'
-            example: '2'
+            example: '1'
       responses:
         200:
           description: success
@@ -296,7 +298,17 @@ paths:
       summary: 'Получение списка сообщений'
       operationId: ''
       description: "Отдается порционно по 20 чатов.\n\nДля получения следующих страниц необходимо передать `page` с номером страницы."
-      parameters: []
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'Номер страницы.'
+          example: '1'
+          required: false
+          schema:
+            type: string
+            description: 'Номер страницы.'
+            example: '1'
       responses:
         200:
           description: success
@@ -401,7 +413,7 @@ paths:
         in: path
         name: chatId
         description: ''
-        example: '04423903'
+        example: '239'
         required: true
         schema:
           type: string

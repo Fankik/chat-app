@@ -30,6 +30,7 @@ class AuthController
      */
     public function index(Request $request): Response|ResponseFactory
     {
+        // Query parameters
         $credentials = $request->validate([
             //Email Example: ivan.ivanov@test.org
             'email' => ['required', 'email:rfc,dns', 'string', 'max:255'],

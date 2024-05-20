@@ -26,7 +26,7 @@ class ChatController
      * @param Request $request
      * @return JsonResource
      *
-     * @queryParam page Номер страницы. Example: 2
+     * @queryParam page Номер страницы. Example: 1
      * @responseFile status=200 scenario="success" storage/responses/chats/index.200.json 
      * @authenticated
      */

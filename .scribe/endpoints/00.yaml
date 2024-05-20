@@ -67,13 +67,24 @@ endpoints:
     responses:
       -
         status: 200
-        content: "{\r\n    \"message\": \"Registration is successful\"\r\n}"
+        content: |-
+          {
+              "message": "Registration is successful"
+          }
         headers: []
         description: success
         custom: []
       -
         status: 422
-        content: "{\r\n    \"message\": \"validation.email\",\r\n    \"errors\": {\r\n        \"email\": [\r\n            \"validation.email\"\r\n        ]\r\n    }\r\n}"
+        content: |-
+          {
+              "message": "validation.email",
+              "errors": {
+                  "email": [
+                      "validation.email"
+                  ]
+              }
+          }
         headers: []
         description: 'validation fail'
         custom: []
@@ -104,9 +115,7 @@ endpoints:
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
+    queryParameters:
       email:
         name: email
         description: 'Email. validation.email validation.max.'
@@ -125,26 +134,42 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         custom: []
-    cleanBodyParameters:
+    cleanQueryParameters:
       email: ivan.ivanov@test.org
       password: test
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses:
       -
         status: 200
-        content: "{\r\n    \"message\": \"Authorization is successful\"\r\n}"
+        content: |-
+          {
+              "message": "Authorization is successful"
+          }
         headers: []
         description: success
         custom: []
       -
         status: 403
-        content: "{\r\n    \"message\": \"Invalid email or password\"\r\n}"
+        content: |-
+          {
+              "message": "Invalid email or password"
+          }
         headers: []
         description: 'invalid email or password'
         custom: []
       -
         status: 422
-        content: "{\r\n    \"message\": \"validation.email\",\r\n    \"errors\": {\r\n        \"email\": [\r\n            \"validation.email\"\r\n        ]\r\n    }\r\n}"
+        content: |-
+          {
+              "message": "validation.email",
+              "errors": {
+                  "email": [
+                      "validation.email"
+                  ]
+              }
+          }
         headers: []
         description: 'validation fail'
         custom: []
@@ -180,20 +205,28 @@ endpoints:
         name: page
         description: 'Номер страницы.'
         required: false
-        example: '2'
+        example: '1'
         type: string
         enumValues: []
         exampleWasSpecified: true
         custom: []
     cleanQueryParameters:
-      page: '2'
+      page: '1'
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses:
       -
         status: 200
-        content: "[\r\n    {\r\n        \"id\": 1,\r\n        \"first_name\": \"Иван\",\r\n        \"last_name\": \"Иванов\",\r\n        \"email\": \"ivan.ivanov@test.org\"\r\n    }\r\n]"
+        content: |-
+          [
+              {
+                  "id": 1,
+                  "first_name": "Иван",
+                  "last_name": "Иванов",
+                  "email": "ivan.ivanov@test.org"
+              }
+          ]
         headers: []
         description: success
         custom: []
@@ -229,20 +262,42 @@ endpoints:
         name: page
         description: 'Номер страницы.'
         required: false
-        example: '2'
+        example: '1'
         type: string
         enumValues: []
         exampleWasSpecified: true
         custom: []
     cleanQueryParameters:
-      page: '2'
+      page: '1'
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses:
       -
         status: 200
-        content: "[\r\n    {\r\n        \"id\": 1,\r\n        \"name\": \"Иван Иванов\",\r\n        \"created_at\": \"2024-05-16T19:09:48.000000Z\",\r\n        \"updated_at\": \"2024-05-16T19:09:48.000000Z\",\r\n        \"users\": [\r\n            {\r\n                \"id\": 1,\r\n                \"first_name\": \"Иван\",\r\n                \"last_name\": \"Иванов\",\r\n                \"email\": \"ivan.ivanov@test.org\"\r\n            },\r\n            {\r\n                \"id\": 2,\r\n                \"first_name\": \"Николай\",\r\n                \"last_name\": \"Николаев\",\r\n                \"email\": \"nikolay.nikolayev@test.org\"\r\n            }\r\n        ]\r\n    }\r\n]"
+        content: |-
+          [
+              {
+                  "id": 1,
+                  "name": "Иван Иванов",
+                  "created_at": "2024-05-16T19:09:48.000000Z",
+                  "updated_at": "2024-05-16T19:09:48.000000Z",
+                  "users": [
+                      {
+                          "id": 1,
+                          "first_name": "Иван",
+                          "last_name": "Иванов",
+                          "email": "ivan.ivanov@test.org"
+                      },
+                      {
+                          "id": 2,
+                          "first_name": "Николай",
+                          "last_name": "Николаев",
+                          "email": "nikolay.nikolayev@test.org"
+                      }
+                  ]
+              }
+          ]
         headers: []
         description: success
         custom: []
@@ -291,25 +346,37 @@ endpoints:
     responses:
       -
         status: 200
-        content: "{\r\n    \"message\": \"Chat created\"\r\n}"
+        content: |-
+          {
+              "message": "Chat created"
+          }
         headers: []
         description: success
         custom: []
       -
         status: 404
-        content: "{\r\n    \"message\": \"User not found\"\r\n}"
+        content: |-
+          {
+              "message": "User not found"
+          }
         headers: []
         description: 'user not found'
         custom: []
       -
         status: 409
-        content: "{\r\n    \"message\" : \"Chat already exist\"\r\n}"
+        content: |-
+          {
+              "message" : "Chat already exist"
+          }
         headers: []
         description: 'chat already exist'
         custom: []
       -
         status: 409
-        content: "{\r\n    \"message\" : \"It is impossible to create a chat with yourself\"\r\n}"
+        content: |-
+          {
+              "message" : "It is impossible to create a chat with yourself"
+          }
         headers: []
         description: 'chat with yourself'
         custom: []
@@ -343,28 +410,50 @@ endpoints:
         name: chatId
         description: ''
         required: true
-        example: '04423903'
+        example: '239'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      chatId: '04423903'
-    queryParameters: []
-    cleanQueryParameters: []
+      chatId: '239'
+    queryParameters:
+      page:
+        name: page
+        description: 'Номер страницы.'
+        required: false
+        example: '1'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        custom: []
+    cleanQueryParameters:
+      page: '1'
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses:
       -
         status: 200
-        content: "[\r\n    {\r\n        \"id\": 6,\r\n        \"chat_id\": 2,\r\n        \"text\": \"test\",\r\n        \"created_at\": \"2024-05-16T20:35:59.000000Z\",\r\n        \"updated_at\": \"2024-05-16T20:35:59.000000Z\"\r\n    }\r\n]"
+        content: |-
+          [
+              {
+                  "id": 6,
+                  "chat_id": 2,
+                  "text": "test",
+                  "created_at": "2024-05-16T20:35:59.000000Z",
+                  "updated_at": "2024-05-16T20:35:59.000000Z"
+              }
+          ]
         headers: []
         description: success
         custom: []
       -
         status: 404
-        content: "{\r\n    \"message\": \"Chat not found\"\r\n}"
+        content: |-
+          {
+              "message": "Chat not found"
+          }
         headers: []
         description: 'chat not found'
         custom: []
@@ -398,13 +487,13 @@ endpoints:
         name: chatId
         description: ''
         required: true
-        example: '9'
+        example: '7792'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      chatId: '9'
+      chatId: '7792'
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -423,19 +512,33 @@ endpoints:
     responses:
       -
         status: 200
-        content: "{\r\n    \"message\": \"Message created\"\r\n}"
+        content: |-
+          {
+              "message": "Message created"
+          }
         headers: []
         description: success
         custom: []
       -
         status: 404
-        content: "{\r\n    \"message\": \"Chat not found\"\r\n}"
+        content: |-
+          {
+              "message": "Chat not found"
+          }
         headers: []
         description: 'chat not found'
         custom: []
       -
         status: 422
-        content: "{\r\n    \"message\": \"validation.max\",\r\n    \"errors\": {\r\n        \"text\": [\r\n            \"validation.max\"\r\n        ]\r\n    }\r\n}"
+        content: |-
+          {
+              "message": "validation.max",
+              "errors": {
+                  "text": [
+                      "validation.max"
+                  ]
+              }
+          }
         headers: []
         description: 'validation fail'
         custom: []
